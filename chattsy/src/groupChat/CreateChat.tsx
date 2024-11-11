@@ -17,6 +17,7 @@ import { CustomUser } from '@/app/api/auth/[...nextauth]/options'
 import axios, { AxiosError } from 'axios'
 import { toast } from 'sonner'
 import { CHAT_GROUP_URL } from '@/lib/apiEndPoints'
+import { clearCache } from '@/actions/common'
 
 export default function CreateChat({user} : {user : CustomUser}) {
     const [open , setOpen] = useState(false)
@@ -40,9 +41,10 @@ export default function CreateChat({user} : {user : CustomUser}) {
             )
 
             if(data?.message){
+              clearCache("dashboard")
                 setLoading(false)
                 setOpen(false)
-                toast.message("Create successfully")
+                toast.message(data?.message)
             }
 
         }catch(error){

@@ -18,7 +18,7 @@ export async function fetchChatGroups(token:string){
 
     const response = await res.json()
 
-    if(response?.daat){
+    if(response?.data){
         return response?.data
     }
     return [];
