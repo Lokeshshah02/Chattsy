@@ -13,7 +13,7 @@ export default function ChatBase() {
 
   useEffect(() => {
     socket.on("message", (data: any) => {
-      console.log("The socket  message is", data);
+      // console.log("The socket message is", data);
     });
 
     return () => {
