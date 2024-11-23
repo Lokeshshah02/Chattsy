@@ -5,15 +5,20 @@ import React, { useEffect, useMemo } from "react";
 import {v4 as uuidV4} from "uuid"
 import { Button } from "../ui/button";
 
-export default function ChatBase() {
+export default function ChatBase({groupId} : {groupId : String}) {
+
   let socket = useMemo(() => {
     const socket = getSocket();
+    // adding auth parameter
+    socket.auth ={
+      room: groupId
+    }
     return socket.connect();
   }, []);
 
   useEffect(() => {
     socket.on("message", (data: any) => {
-      // console.log("The socket message is", data);
+      console.log("The socket message is", data);
     });
 
     return () => {
